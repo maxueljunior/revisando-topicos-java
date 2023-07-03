@@ -1,0 +1,24 @@
+[
+  {
+    "cep": "14169-362",
+    "logradouro": "Rua Silvio José Sarti",
+    "complemento": "",
+    "bairro": "Jardim Florenzza",
+    "localidade": "Sertãozinho",
+    "uf": "SP",
+    "ibge": 3551702,
+    "ddd": 16,
+    "siafi": 7135
+  },
+  {
+    "cep": "14165-000",
+    "logradouro": "Rua Horacílio Gomes Martins",
+    "complemento": "",
+    "bairro": "Jardim Iracema",
+    "localidade": "Sertãozinho",
+    "uf": "SP",
+    "ibge": 3551702,
+    "ddd": 16,
+    "siafi": 7135
+  }
+]
