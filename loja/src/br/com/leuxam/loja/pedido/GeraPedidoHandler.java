@@ -17,7 +17,7 @@ public class GeraPedidoHandler {
 	// construtor com injeção de depêndencias: repository, service, e etc...
 	
 	public void execute(GeraPedido dados) {
-		Orcamento orcamento = new Orcamento(dados.getValorOrcamento(), dados.getQuantidadeItens());
+		Orcamento orcamento = new Orcamento();
 		
 		Pedido pedido = new Pedido(dados.getCliente(), LocalDateTime.now(), orcamento);
 		

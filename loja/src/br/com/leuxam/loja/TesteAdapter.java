@@ -9,7 +9,7 @@ import br.com.leuxam.loja.orcamento.RegistroDeOrcamento;
 public class TesteAdapter {
 
 	public static void main(String[] args) {
-		Orcamento orcamento = new Orcamento(new BigDecimal("10"), 1);
+		Orcamento orcamento = new Orcamento();
 		orcamento.aprovar();
 		orcamento.finalizar();
 		RegistroDeOrcamento registro = new RegistroDeOrcamento(new JavaHttpClient());
