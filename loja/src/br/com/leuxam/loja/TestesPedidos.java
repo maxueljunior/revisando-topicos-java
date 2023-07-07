@@ -6,6 +6,7 @@ import java.util.Arrays;
 import br.com.leuxam.loja.pedido.GeraPedido;
 import br.com.leuxam.loja.pedido.GeraPedidoHandler;
 import br.com.leuxam.loja.pedido.acao.EnviarEmailPedido;
+import br.com.leuxam.loja.pedido.acao.LogDePedidos;
 import br.com.leuxam.loja.pedido.acao.SalvarPedidoNoBD;
 
 public class TestesPedidos {
@@ -19,8 +20,8 @@ public class TestesPedidos {
 		
 		GeraPedidoHandler handler = new GeraPedidoHandler(
 				Arrays.asList(new SalvarPedidoNoBD(),
-						new EnviarEmailPedido()
-						));
+						new EnviarEmailPedido(),
+						new LogDePedidos()));
 		
 		handler.execute(gerador);
 	}
