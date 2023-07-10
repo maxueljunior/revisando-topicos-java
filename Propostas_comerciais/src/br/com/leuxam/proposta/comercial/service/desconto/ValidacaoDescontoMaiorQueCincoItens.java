@@ -10,12 +10,13 @@ public class ValidacaoDescontoMaiorQueCincoItens extends Desconto{
 		super(proximo);
 	}
 
-	public BigDecimal desconto(PropostaComercial propostaComercial) {
-	
-		if(propostaComercial.getItens().size() > 5) {
-			return propostaComercial.getValor().subtract(propostaComercial.getValor().multiply(new BigDecimal("0.15")));
-		}
-		
-		return proximo.desconto(propostaComercial);
+	@Override
+	public BigDecimal efetuarDesconto(PropostaComercial propostaComercial) {
+		return propostaComercial.getValor().subtract(propostaComercial.getValor().multiply(new BigDecimal("0.15")));
+	}
+
+	@Override
+	public Boolean deveAplicar(PropostaComercial propostaComercial) {
+		return propostaComercial.getItens().size() > 5;
 	}
 }

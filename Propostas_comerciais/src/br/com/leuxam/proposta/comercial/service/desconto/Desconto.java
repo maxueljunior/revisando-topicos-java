@@ -12,6 +12,14 @@ public abstract class Desconto {
 		this.proximo = proximo;
 	}
 	
-	public abstract BigDecimal desconto(PropostaComercial propostaComercial);
+	public BigDecimal desconto(PropostaComercial propostaComercial) {
+		if(deveAplicar(propostaComercial)) {
+			return efetuarDesconto(propostaComercial);
+		}
+		return proximo.desconto(propostaComercial);
+	}
 	
+	public abstract BigDecimal efetuarDesconto(PropostaComercial propostaComercial);
+	
+	public abstract Boolean deveAplicar(PropostaComercial propostaComercial);
 }

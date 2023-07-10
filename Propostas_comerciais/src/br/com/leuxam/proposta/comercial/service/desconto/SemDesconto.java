@@ -10,9 +10,13 @@ public class SemDesconto extends Desconto{
 		super(null);
 	}
 
-	public BigDecimal desconto(PropostaComercial propostaComercial) {
-	
+	@Override
+	public BigDecimal efetuarDesconto(PropostaComercial propostaComercial) {
 		return BigDecimal.ZERO;
-		
+	}
+
+	@Override
+	public Boolean deveAplicar(PropostaComercial propostaComercial) {
+		return true;
 	}
 }

@@ -10,12 +10,14 @@ public class ValidacaoDescontoMaiorQueMil extends Desconto{
 		super(proximo);
 	}
 
-	public BigDecimal desconto(PropostaComercial propostaComercial) {
-		
-		if(propostaComercial.getValor().compareTo(new BigDecimal("1000.00")) > 0 ) {
-			return propostaComercial.getValor().subtract(propostaComercial.getValor().multiply(new BigDecimal("0.10")));
-		}
-		
-		return proximo.desconto(propostaComercial);
+	@Override
+	public BigDecimal efetuarDesconto(PropostaComercial propostaComercial) {
+		return propostaComercial.getValor().subtract(propostaComercial.getValor().multiply(new BigDecimal("0.10")));
+	}
+
+	@Override
+	public Boolean deveAplicar(PropostaComercial propostaComercial) {
+		// TODO Auto-generated method stub
+		return propostaComercial.getValor().compareTo(new BigDecimal("1000.00")) > 0;
 	}
 }

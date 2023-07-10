@@ -9,13 +9,13 @@ import br.com.leuxam.proposta.comercial.models.Informacoes;
 import br.com.leuxam.proposta.comercial.models.Orcamentista;
 import br.com.leuxam.proposta.comercial.models.enums.Funcoes;
 
-public class TesteReajusteSalario {
+public class TesteReajusteSalarioPadraoStrategy {
 
 	public static void main(String[] args) {
 	
 		LocalDate dataDeUltimoReajuste = LocalDate.of(2023, 1, 5);
 		LocalDate dataDeAdmissao = LocalDate.of(2022, 7, 5);
-	
+		
 		Set<Funcoes> funcoesOrcamentista = new HashSet<>();
 		
 		Orcamentista o1 = new Orcamentista(

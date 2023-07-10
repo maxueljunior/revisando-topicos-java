@@ -14,7 +14,7 @@ import br.com.leuxam.proposta.comercial.models.PropostaComercial;
 import br.com.leuxam.proposta.comercial.models.enums.Funcoes;
 import br.com.leuxam.proposta.comercial.service.desconto.DescontoProposta;
 
-public class TesteDescontoProposta {
+public class TesteDescontoPropostaPadraoChainOfResponsibillity {
 
 	public static void main(String[] args) {
 		
