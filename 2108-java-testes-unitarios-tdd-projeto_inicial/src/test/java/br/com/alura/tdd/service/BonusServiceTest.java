@@ -1,6 +1,7 @@
 package br.com.alura.tdd.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.math.BigDecimal;
 
@@ -13,9 +14,16 @@ class BonusServiceTest {
 	@Test
 	void bonusDeveriaSerZeroParaFuncionarioComSalarioMuitoAlto() {
 		BonusService service = new BonusService();
-		BigDecimal bonus = service.calcularBonus(new Funcionario(null, null, new BigDecimal("100000")));
 		
-		assertEquals(BigDecimal.ZERO, bonus);
+		//assertThrows(IllegalArgumentException.class,
+				//() -> service.calcularBonus(new Funcionario(null, null, new BigDecimal("100000"))));
+	
+		try {
+			service.calcularBonus(new Funcionario(null, null, new BigDecimal("100000")));
+			fail("Não deu a exception");
+		}catch(Exception e) {
+			assertEquals("Funcionario com salario maior do que R$10.000, não pode receber bonus!", e.getMessage());
+		}
 	}
 	
 	@Test
