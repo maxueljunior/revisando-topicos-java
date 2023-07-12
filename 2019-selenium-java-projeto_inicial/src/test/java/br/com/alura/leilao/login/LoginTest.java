@@ -32,7 +32,7 @@ public class LoginTest {
 	
 	@AfterEach
 	public void afterEach() {
-		//this.browser.quit();
+		this.browser.quit();
 	}
 	
 	@Test
