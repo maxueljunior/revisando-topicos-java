@@ -35,7 +35,7 @@
 							<a class="btn btn-block btn-info" th:href="@{'/leiloes/' + ${leilao.id}}" >dar lance</a>
 						</td>
 						<td sec:authorize="isAuthenticated()" th:if="${leilao.usuario.nome == usuarioLogado.name} ">
-							<a class="btn btn-block btn-primary m-0" th:href="@{'/leiloes/' + ${leilao.id}} + '/form'">editar</a>
+							<a id="botao-editar" class="btn btn-block btn-primary m-0" th:href="@{'/leiloes/' + ${leilao.id}} + '/form'">editar</a>
 						</td>
 					</tr>
 				</tbody>
