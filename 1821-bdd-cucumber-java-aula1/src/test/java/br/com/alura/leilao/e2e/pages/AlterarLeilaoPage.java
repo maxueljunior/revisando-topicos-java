@@ -12,7 +12,7 @@ public class AlterarLeilaoPage {
 		this.driver = driver;
 	}
 
-	public void preencheForm(String nome, String valor, String data) {
+	public LeiloesPage preencheForm(String nome, String valor, String data) {
 
 		WebElement txtNome = driver.findElement(By.name("nome"));
         WebElement txtValor = driver.findElement(By.name("valorInicial"));
@@ -26,6 +26,7 @@ public class AlterarLeilaoPage {
         txtData.sendKeys(data);
 
         txtNome.submit();
+        return new LeiloesPage(driver);
 	}
 
 }

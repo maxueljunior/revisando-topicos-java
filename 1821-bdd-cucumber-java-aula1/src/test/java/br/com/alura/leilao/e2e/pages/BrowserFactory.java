@@ -25,7 +25,7 @@ public class BrowserFactory {
 
 	private  WebDriver initChromeDriver() {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Maxuel\\Desktop\\revisando-topicos-java\\1821-bdd-cucumber-java-aula1\\drivers\\chromedriver.exe");
+				"C:\\Users\\maxueljunior\\Videos\\Docs\\revisando-topicos-java\\1821-bdd-cucumber-java-aula1\\drivers\\chromedriver.exe");
 		return new ChromeDriver();
 	}
 
