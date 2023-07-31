@@ -8,7 +8,7 @@ import br.com.alura.bytebank.domain.conta.DadosAberturaConta;
 import java.util.Scanner;
 
 public class BytebankApplication {
-
+/*
     private static ContaService service = new ContaService();
     private static Scanner teclado = new Scanner(System.in).useDelimiter("\n");
 
@@ -136,5 +136,5 @@ public class BytebankApplication {
         System.out.println("Depósito realizado com sucesso!");
         System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();
-    }
+    }*/
 }

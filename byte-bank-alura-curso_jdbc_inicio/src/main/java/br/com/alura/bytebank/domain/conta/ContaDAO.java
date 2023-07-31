@@ -33,6 +33,8 @@ public class ContaDAO {
         ps.setString(4, dadosDaConta.dadosCliente().cpf());
         ps.setString(5, dadosDaConta.dadosCliente().email());
         ps.execute();
+        ps.close();
+        conn.close();
 	}
 	
 	public Set<Conta> listar() throws SQLException{
@@ -54,7 +56,53 @@ public class ContaDAO {
 			contas.add(new Conta(numero, cliente));
 		}
 		
+		resultSet.close();
+		ps.close();
+		conn.close();
+		
 		return contas;
 	}
 	
+	public Conta listarPorNumeroDaConta(Integer numero) throws SQLException {
+		
+		Conta conta;
+		
+		//String sql = "SELECT * FROM conta WHERE numero = " + numero;
+		
+		String sql = "SELECT * FROM conta WHERE numero = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, numero);
+		ResultSet rs = ps.executeQuery();
+		
+		if(rs.next() == false) throw new IllegalArgumentException("Não existe cliente por esse numero " + numero);
+		
+		BigDecimal saldo = rs.getBigDecimal(2);
+		String nome = rs.getString(3);
+		String cpf = rs.getString(4);
+		String email = rs.getString(5);
+		
+		rs.close();
+		ps.close();
+		conn.close();
+		
+		DadosCadastroCliente dadosCadastroCliente = new DadosCadastroCliente(nome, cpf, email);
+		Cliente cliente = new Cliente(dadosCadastroCliente);
+		conta = new Conta(numero, cliente);
+		conta.depositar(saldo);
+		return conta;
+	}
+	
+	public void alterarValor(Integer numero, BigDecimal valor) throws SQLException {
+		String sql = "UPDATE conta SET saldo = ? WHERE numero = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setBigDecimal(1, valor);
+		ps.setInt(2, numero);
+		
+		ps.execute();
+		ps.close();
+		conn.close();
+	}
 }
