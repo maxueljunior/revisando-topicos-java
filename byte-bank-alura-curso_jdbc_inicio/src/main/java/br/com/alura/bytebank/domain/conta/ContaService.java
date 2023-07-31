@@ -61,8 +61,14 @@ public class ContaService {
             throw new RegraDeNegocioException("Valor do deposito deve ser superior a zero!");
         }
         
+        BigDecimal valorNovo = conta.getSaldo().add(valor);
         Connection conn = connection.recuperarConexao();
-        new ContaDAO(conn).alterarValor(conta.getNumero(), valor);
+        new ContaDAO(conn).alterarValor(conta.getNumero(), valorNovo);
+    }
+    
+    public void realizarTransferencia(Integer numeroDaContaOrigem, Integer numeroDaContaDestino, BigDecimal valor) throws SQLException {
+    	this.realizarSaque(numeroDaContaOrigem, valor);
+    	this.realizarDeposito(numeroDaContaDestino, valor);
     }
 
     public void encerrar(Integer numeroDaConta) throws SQLException {
@@ -70,8 +76,9 @@ public class ContaService {
         if (conta.possuiSaldo()) {
             throw new RegraDeNegocioException("Conta não pode ser encerrada pois ainda possui saldo!");
         }
-
-        contas.remove(conta);
+        
+       Connection conn = connection.recuperarConexao();
+       new ContaDAO(conn).deletar(numeroDaConta);
     }
 
     public Conta buscarContaPorNumero(Integer numero) throws SQLException {
