@@ -1,5 +1,7 @@
 package br.com.alura.loja.modelo.orcamento;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +16,14 @@ public class Material {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	
-	public Material(String descricao) {
-		this.descricao = descricao;
-	}
+	private BigDecimal preco;
 	
 	public Material() {}
+	
+	public Material(String descricao, BigDecimal preco) {
+		this.descricao = descricao;
+		this.preco = preco;
+	}
 
 	public Long getId() {
 		return id;
@@ -35,5 +39,13 @@ public class Material {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 }

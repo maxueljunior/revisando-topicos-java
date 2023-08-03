@@ -29,6 +29,7 @@ public class MaterialProposta {
 		this.quantidade = quantidade;
 		this.materiais = materiais;
 		this.propostas = propostas;
+		this.valor = materiais.getPreco();
 	}
 	
 	public MaterialProposta() {}
@@ -71,5 +72,9 @@ public class MaterialProposta {
 
 	public void setPropostas(Proposta propostas) {
 		this.propostas = propostas;
+	}
+
+	public BigDecimal getValorTotal() {
+		return this.valor.multiply(new BigDecimal(quantidade));
 	}
 }
