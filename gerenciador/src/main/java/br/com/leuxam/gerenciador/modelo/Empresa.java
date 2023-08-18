@@ -1,5 +1,5 @@
 
-package br.com.leuxam.gerenciador.servlet;
+package br.com.leuxam.gerenciador.modelo;
 
 import java.util.Date;
 
