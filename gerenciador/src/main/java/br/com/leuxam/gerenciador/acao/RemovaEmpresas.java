@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.leuxam.gerenciador.modelo.Banco;
 import br.com.leuxam.gerenciador.modelo.Empresa;
 
-public class ListaEmpresasAcao {
+public class RemovaEmpresas implements Acao {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Banco banco = new Banco();
-		List<Empresa> empresas = banco.getEmpresas();
-		request.setAttribute("empresas", empresas);
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String paramId = request.getParameter("id");
+		Long id = Long.valueOf(paramId);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/listarEmpresasCriadas.jsp");
-		rd.forward(request, response);
+		System.out.println(id);
+		
+		Banco banco = new Banco();
+		banco.removeEmpresa(id);
+		
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
-	
 }

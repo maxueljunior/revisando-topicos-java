@@ -2,17 +2,20 @@ package br.com.leuxam.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.leuxam.gerenciador.acao.AlteraEmpresasAcao;
-import br.com.leuxam.gerenciador.acao.ListaEmpresasAcao;
-import br.com.leuxam.gerenciador.acao.MostraEmpresaAcao;
-import br.com.leuxam.gerenciador.acao.NovaEmpresasAcao;
-import br.com.leuxam.gerenciador.acao.RemovaEmpresasAcao;
+import br.com.leuxam.gerenciador.acao.Acao;
+import br.com.leuxam.gerenciador.acao.AlteraEmpresas;
+import br.com.leuxam.gerenciador.acao.ListaEmpresas;
+import br.com.leuxam.gerenciador.acao.MostraEmpresa;
+import br.com.leuxam.gerenciador.acao.NovaEmpresas;
+import br.com.leuxam.gerenciador.acao.NovaEmpresasForm;
+import br.com.leuxam.gerenciador.acao.RemovaEmpresas;
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -22,34 +25,24 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String paramAcao = request.getParameter("acao");
-
-		if (paramAcao.equals("ListaEmpresas")) {
-			System.out.println("listando empresas..");
-			
-			ListaEmpresasAcao acao = new ListaEmpresasAcao();
-			acao.executa(request, response);
-			
-		} else if (paramAcao.equals("RemovaEmpresa")) {
-			System.out.println("removendo empresas..");
-			
-			RemovaEmpresasAcao acao = new RemovaEmpresasAcao();
-			acao.executa(request, response);
-			
-		} else if (paramAcao.equals("MostraEmpresa")) {
-			System.out.println("mostrando empresas..");
-			
-			MostraEmpresaAcao acao = new MostraEmpresaAcao();
-			acao.executa(request, response);
-		} else if (paramAcao.equals("AlteraEmpresa")) {
-			System.out.println("alterando empresas..");
-			
-			AlteraEmpresasAcao acao = new AlteraEmpresasAcao();
-			acao.executa(request, response);
-		} else if (paramAcao.equals("NovaEmpresa")) {
-			System.out.println("alterando empresas..");
-			
-			NovaEmpresasAcao acao = new NovaEmpresasAcao();
-			acao.executa(request, response);
+		
+		String nomeDaClasse = "br.com.leuxam.gerenciador.acao." + paramAcao;
+		String nome = null;
+		try {
+			Class classe = Class.forName(nomeDaClasse);
+			Acao obj = (Acao) classe.newInstance();
+			nome = obj.executa(request, response);
+		}catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			throw new ServletException(e);
+		}
+		
+		String[] tipo = nome.split(":");
+		
+		if(tipo[0].equals("forward")) {
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipo[1]);
+			rd.forward(request, response);
+		}else {
+			response.sendRedirect(tipo[1]);
 		}
 	}
 

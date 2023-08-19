@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.leuxam.gerenciador.modelo.Banco;
 import br.com.leuxam.gerenciador.modelo.Empresa;
 
-public class RemovaEmpresasAcao {
+public class MostraEmpresa implements Acao{
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String paramId = request.getParameter("id");
 		Long id = Long.valueOf(paramId);
 		
-		System.out.println(id);
-		
 		Banco banco = new Banco();
-		banco.removeEmpresa(id);
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		Empresa emp = banco.buscarEmpresa(id);
+		
+		System.out.println(emp.getNome());
+		request.setAttribute("empresa", emp);
+		
+		return "forward:formAlteraEmpresa.jsp";
 	}
 	
 }
