@@ -1,11 +1,17 @@
 package br.com.leuxam.mudi.dto;
 
 import br.com.leuxam.mudi.model.Pedido;
+import jakarta.validation.constraints.NotBlank;
 
 public class RequisicaoNovoPedido {
 	
+	@NotBlank
 	private String nomeProduto;
+	
+	@NotBlank
 	private String urlProduto;
+	
+	@NotBlank
 	private String urlImagem;
 	private String descricao;
 	
@@ -58,4 +64,5 @@ public class RequisicaoNovoPedido {
 		pedido.setUrlDoProduto(urlProduto);
 		return pedido;
 	}
+
 }
