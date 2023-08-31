@@ -1,6 +1,6 @@
-package br.com.leuxam.med.voll.api.paciente;
+package br.com.leuxam.med.voll.api.domain.paciente;
 
-import br.com.leuxam.med.voll.api.endereco.DadosEndereco;
+import br.com.leuxam.med.voll.api.domain.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizadosPaciente(

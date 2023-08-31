@@ -1,4 +1,4 @@
-package br.com.leuxam.med.voll.api.medico;
+package br.com.leuxam.med.voll.api.domain.medico;
 
 public enum Especialidade {
 	ORTOPEDIA,

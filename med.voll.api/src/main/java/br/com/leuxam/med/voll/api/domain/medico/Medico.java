@@ -1,6 +1,6 @@
-package br.com.leuxam.med.voll.api.medico;
+package br.com.leuxam.med.voll.api.domain.medico;
 
-import br.com.leuxam.med.voll.api.endereco.Endereco;
+import br.com.leuxam.med.voll.api.domain.endereco.Endereco;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,12 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")

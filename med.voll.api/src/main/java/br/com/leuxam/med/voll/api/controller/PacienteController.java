@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.leuxam.med.voll.api.paciente.DadosAtualizadosPaciente;
-import br.com.leuxam.med.voll.api.paciente.DadosCadastroPaciente;
-import br.com.leuxam.med.voll.api.paciente.DadosDetalhamentoPaciente;
-import br.com.leuxam.med.voll.api.paciente.DadosListagemPaciente;
-import br.com.leuxam.med.voll.api.paciente.Paciente;
-import br.com.leuxam.med.voll.api.paciente.PacienteRepository;
+import br.com.leuxam.med.voll.api.domain.paciente.DadosAtualizadosPaciente;
+import br.com.leuxam.med.voll.api.domain.paciente.DadosCadastroPaciente;
+import br.com.leuxam.med.voll.api.domain.paciente.DadosDetalhamentoPaciente;
+import br.com.leuxam.med.voll.api.domain.paciente.DadosListagemPaciente;
+import br.com.leuxam.med.voll.api.domain.paciente.Paciente;
+import br.com.leuxam.med.voll.api.domain.paciente.PacienteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 

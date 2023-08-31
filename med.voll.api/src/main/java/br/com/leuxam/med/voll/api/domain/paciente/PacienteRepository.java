@@ -1,4 +1,4 @@
-package br.com.leuxam.med.voll.api.paciente;
+package br.com.leuxam.med.voll.api.domain.paciente;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

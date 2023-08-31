@@ -1,6 +1,6 @@
-package br.com.leuxam.med.voll.api.paciente;
+package br.com.leuxam.med.voll.api.domain.paciente;
 
-import br.com.leuxam.med.voll.api.endereco.Endereco;
+import br.com.leuxam.med.voll.api.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente(
 		Long id,

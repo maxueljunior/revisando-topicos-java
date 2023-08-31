@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.leuxam.med.voll.api.medico.DadosAtualizacaoMedico;
-import br.com.leuxam.med.voll.api.medico.DadosCadastroMedico;
-import br.com.leuxam.med.voll.api.medico.DadosDetalhamentoMedico;
-import br.com.leuxam.med.voll.api.medico.DadosListagemMedico;
-import br.com.leuxam.med.voll.api.medico.Medico;
-import br.com.leuxam.med.voll.api.medico.MedicoRepository;
+import br.com.leuxam.med.voll.api.domain.medico.DadosAtualizacaoMedico;
+import br.com.leuxam.med.voll.api.domain.medico.DadosCadastroMedico;
+import br.com.leuxam.med.voll.api.domain.medico.DadosDetalhamentoMedico;
+import br.com.leuxam.med.voll.api.domain.medico.DadosListagemMedico;
+import br.com.leuxam.med.voll.api.domain.medico.Medico;
+import br.com.leuxam.med.voll.api.domain.medico.MedicoRepository;
 import jakarta.validation.Valid;
 
 @RestController

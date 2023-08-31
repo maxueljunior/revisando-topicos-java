@@ -1,4 +1,4 @@
-package br.com.leuxam.med.voll.api.paciente;
+package br.com.leuxam.med.voll.api.domain.paciente;
 
 public record DadosListagemPaciente(
 		Long id,

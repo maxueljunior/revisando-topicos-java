@@ -1,4 +1,4 @@
-package br.com.leuxam.med.voll.api.endereco;
+package br.com.leuxam.med.voll.api.domain.endereco;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
