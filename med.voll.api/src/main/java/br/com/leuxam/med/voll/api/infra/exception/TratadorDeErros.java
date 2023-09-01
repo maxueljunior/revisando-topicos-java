@@ -1,4 +1,4 @@
-package br.com.leuxam.med.voll.api.infra;
+package br.com.leuxam.med.voll.api.infra.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
