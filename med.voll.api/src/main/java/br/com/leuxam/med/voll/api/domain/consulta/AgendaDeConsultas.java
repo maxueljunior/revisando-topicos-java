@@ -1,15 +1,16 @@
 package br.com.leuxam.med.voll.api.domain.consulta;
 
 import java.time.ZoneOffset;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.leuxam.med.voll.api.domain.ValidacaoException;
+import br.com.leuxam.med.voll.api.domain.consulta.validacoes.ValidadorAgendamentoDeConsulta;
 import br.com.leuxam.med.voll.api.domain.medico.Medico;
 import br.com.leuxam.med.voll.api.domain.medico.MedicoRepository;
 import br.com.leuxam.med.voll.api.domain.paciente.PacienteRepository;
-import jakarta.validation.Valid;
 
 @Service
 public class AgendaDeConsultas {
@@ -22,8 +23,11 @@ public class AgendaDeConsultas {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private List<ValidadorAgendamentoDeConsulta> validadores;
 
-	public void agendar(DadosAgendamentoConsulta dados) {
+	public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados) {
 		
 		if(!pacienteRepository.existsById(dados.idPaciente())) {
 			throw new ValidacaoException("O id do paciente " + dados.idPaciente() + " não existe");
@@ -33,11 +37,14 @@ public class AgendaDeConsultas {
 			throw new ValidacaoException("O id do medico " + dados.idMedico() + " não existe");
 		}
 		
+		validadores.forEach(x -> x.validar(dados));
+		
 		var medico = escolherMedico(dados);
 		var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
 		var consulta = new Consulta(null, medico, paciente, dados.data(), null);
 		
 		consultaRepository.save(consulta);
+		return new DadosDetalhamentoConsulta(consulta);
 	}
 
 	private Medico escolherMedico(DadosAgendamentoConsulta dados) {
