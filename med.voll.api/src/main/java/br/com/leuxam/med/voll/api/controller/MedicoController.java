@@ -22,10 +22,12 @@ import br.com.leuxam.med.voll.api.domain.medico.DadosDetalhamentoMedico;
 import br.com.leuxam.med.voll.api.domain.medico.DadosListagemMedico;
 import br.com.leuxam.med.voll.api.domain.medico.Medico;
 import br.com.leuxam.med.voll.api.domain.medico.MedicoRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 	
 	@Autowired

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.leuxam.med.voll.api.domain.ValidacaoException;
 import br.com.leuxam.med.voll.api.domain.consulta.validacoes.ValidadorAgendamentoDeConsulta;
+import br.com.leuxam.med.voll.api.domain.consulta.validacoes.ValidadorCancelamentoDeConsulta;
 import br.com.leuxam.med.voll.api.domain.medico.Medico;
 import br.com.leuxam.med.voll.api.domain.medico.MedicoRepository;
 import br.com.leuxam.med.voll.api.domain.paciente.PacienteRepository;
@@ -26,6 +27,9 @@ public class AgendaDeConsultas {
 	
 	@Autowired
 	private List<ValidadorAgendamentoDeConsulta> validadores;
+	
+	@Autowired
+	private List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
 
 	public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados) {
 		
@@ -40,6 +44,9 @@ public class AgendaDeConsultas {
 		validadores.forEach(x -> x.validar(dados));
 		
 		var medico = escolherMedico(dados);
+		if(medico == null) {
+			throw new ValidacaoException("Não existe medico disponivel nessa data");
+		}
 		var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
 		var consulta = new Consulta(null, medico, paciente, dados.data(), null);
 		
@@ -63,22 +70,9 @@ public class AgendaDeConsultas {
 		
 		var consulta = consultaRepository.findById(dados.idConsulta()).get();
 		
-		if(consulta.getMotivoCancelamento() != null) {
-			throw new ValidacaoException("A consulta já foi cancelada!");
-		}
-		
-		if(!isAtendeAntecedenciaDeUmDia(consulta, dados)) {
-			throw new ValidacaoException("A consulta não pode ser cancelada, pois passou de 24 horas de antecedência!");
-		}
+		validadoresCancelamento.forEach(v -> v.validar(dados));
 		
 		consulta.cancelar(dados.motivoCancelamento());
-	}
-
-	private boolean isAtendeAntecedenciaDeUmDia(Consulta consulta, DadosCancelamentoConsulta dados) {
-		var horas = (consulta.getData().toEpochSecond(ZoneOffset.UTC) - dados.data().toEpochSecond(ZoneOffset.UTC)) / 3600;
-		System.out.println(horas);
-		if(horas >= 24) return true;
-		return false;
 	}
 
 }
